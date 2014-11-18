@@ -33,8 +33,12 @@ end
 
 put '/wiki/:id' do
   wiki = Wiki.find(params[:id])
-  wiki.update(params[:wiki])
-  redirect("/wiki/#{wiki.id}")
+  if wiki.update(params[:wiki])
+    redirect("/wiki/#{wiki.id}")
+  else
+    session[:error] = wiki.errors.messages 
+    redirect("/wiki/#{wiki.id}/edit")
+  end
 end
 
 # Delete
