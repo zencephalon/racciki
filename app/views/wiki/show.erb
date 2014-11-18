@@ -3,3 +3,11 @@
 <div class="wiki_content">
   <%= @wiki.content %>
 </div>
+
+<div class="wiki_buttons">
+  <!-- add an edit button -->
+  <form action="/wiki/<%= @wiki.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete!">
+  </form>
+</div>
