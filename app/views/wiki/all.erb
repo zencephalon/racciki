@@ -1,0 +1,5 @@
+<ol>
+<% @wikis.each do |wiki| %>
+  <li><a href="/wiki/<%= wiki.id %>"><%= wiki.title %></a></li>
+<% end %>
+</ol>
