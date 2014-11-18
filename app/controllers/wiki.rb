@@ -1,3 +1,8 @@
+get '/wiki/all' do
+  @wikis = Wiki.all
+  erb :'wiki/all'
+end
+
 # Create
 get '/wiki/new' do
   erb :'wiki/new_form'
