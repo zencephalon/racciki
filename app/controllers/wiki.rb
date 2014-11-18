@@ -32,3 +32,10 @@ put '/wiki/:id' do
   wiki.update(params[:wiki])
   redirect("/wiki/#{wiki.id}")
 end
+
+# Delete
+delete '/wiki/:id' do
+  wiki = Wiki.find(params[:id])
+  wiki.destroy
+  redirect('/wiki/all')
+end
