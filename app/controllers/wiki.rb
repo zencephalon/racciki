@@ -9,10 +9,14 @@ get '/wiki/new' do
 end
 
 post '/wiki' do
-  p params
-  p params[:wiki]
-  wiki = Wiki.create(params[:wiki])
-  redirect("/wiki/#{wiki.id}")
+  wiki = Wiki.new(params[:wiki])
+
+  if wiki.save
+    redirect("/wiki/#{wiki.id}")
+  else
+    session[:error] = wiki.errors.messages 
+    redirect("/wiki/new")
+  end
 end
 
 # Read
