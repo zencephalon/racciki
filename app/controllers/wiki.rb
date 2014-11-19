@@ -5,7 +5,11 @@ end
 
 # Create
 get '/wiki/new' do
-  erb :'wiki/new_form'
+  if current_user
+    erb :'wiki/new_form'
+  else
+    redirect("/login")
+  end
 end
 
 post '/wiki' do
