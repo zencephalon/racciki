@@ -8,3 +8,7 @@ def display_error
     return ""
   end
 end
+
+def set_error(msg)
+  session[:error] = {"Error" => [msg]}
+end
