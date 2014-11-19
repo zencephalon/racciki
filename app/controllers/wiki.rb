@@ -16,6 +16,8 @@ post '/wiki' do
   wiki = Wiki.new(params[:wiki])
 
   if wiki.save
+    #Contribution.create(user: current_user, wiki: wiki)
+    wiki.contributions.create(user: current_user)
     redirect("/wiki/#{wiki.id}")
   else
     session[:error] = wiki.errors.messages 
@@ -38,6 +40,8 @@ end
 put '/wiki/:id' do
   wiki = Wiki.find(params[:id])
   if wiki.update(params[:wiki])
+    # wiki.contributions.create(user: current_user)
+    wiki.contributers << current_user
     redirect("/wiki/#{wiki.id}")
   else
     session[:error] = wiki.errors.messages 
