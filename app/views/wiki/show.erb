@@ -4,6 +4,8 @@
   <%= @wiki.content %>
 </div>
 
+<%= erb :'wiki/contribution_list', locals: {contributions: @wiki.contributions} %>
+
 <div class="wiki_buttons">
   <!-- add an edit button -->
   <form action="/wiki/<%= @wiki.id %>" method="POST">

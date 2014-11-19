@@ -1,0 +1,8 @@
+<div class="contribution_list">
+  <h2>Contributers:</h2>
+  <ol>
+    <% contributions.each do |contribution| %>
+      <li><%= contribution.user.name %></li>
+    <% end %>
+  </ol>
+</div>
