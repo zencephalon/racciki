@@ -1,5 +1,5 @@
 get '/' do
-  erb :welcome
+  redirect("/wiki/all")
 end
 
 get '/login' do
