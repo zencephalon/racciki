@@ -1,0 +1,6 @@
+<div class="revision_list">
+  <h2>Revisions:</h2>
+    <% revisions.each do |revision| %>
+      <div><a href="<%= revision_url(revision, wiki_id) %>"><%= revision.revision_id %></a> written by <%= revision.user.name %></div>
+    <% end %>
+</div>

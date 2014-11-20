@@ -4,6 +4,8 @@
   <%= @revision.content %>
 </div>
 
+<%= erb :'wiki/revision_list', locals: {revisions: @wiki.revisions, wiki_id: @wiki.id} %>
+
 <div class="wiki_buttons">
   <!-- add an edit button -->
   <form action="/wiki/<%= @wiki.id %>" method="POST">
