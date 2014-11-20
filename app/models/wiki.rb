@@ -12,7 +12,7 @@ class Wiki < ActiveRecord::Base
   # has_many :users, through: :subscriptions
   def create_revision(content)
     self.revision_id += 1
-    self.revisions.create(content: content, revision_id: self.revision_id)
+    self.revisions.create(content: content, revision_id: self.revision_id, user: current_user)
     self.save
   end
 
