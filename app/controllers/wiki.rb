@@ -15,9 +15,11 @@ end
 post '/wiki' do
   wiki = Wiki.new(params[:wiki])
 
+  p params
   if wiki.save
     #Contribution.create(user: current_user, wiki: wiki)
-    wiki.contributions.create(user: current_user)
+    #wiki.contributions.create(user: current_user)
+    wiki.create_revision(params[:revision][:content])
     redirect("/wiki/#{wiki.id}")
   else
     session[:error] = wiki.errors.messages 
