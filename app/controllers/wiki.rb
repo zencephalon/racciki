@@ -28,21 +28,27 @@ post '/wiki' do
 end
 
 # Read
-get '/wiki/:id' do
-  @wiki = Wiki.find(params[:id])
+get '/wiki/:id' do |id|
+  @wiki = Wiki.find(id)
   @revision = @wiki.current_revision
   erb :'wiki/show'
 end
 
+get '/wiki/:id/rev/:r_id' do |id, r_id|
+  @wiki = Wiki.find(id)
+  @revision = @wiki.revisions.find_by(revision_id: r_id)
+  erb :'wiki/show'
+end
+
 # Update
-get '/wiki/:id/edit' do
-  @wiki = Wiki.find(params[:id])
+get '/wiki/:id/edit' do |id|
+  @wiki = Wiki.find(id)
   @revision = @wiki.current_revision
   erb :'wiki/update_form'
 end
 
-put '/wiki/:id' do
-  wiki = Wiki.find(params[:id])
+put '/wiki/:id' do |id|
+  wiki = Wiki.find(id)
   if wiki.update(params[:wiki])
     wiki.create_revision(params[:revision][:content], current_user)
     redirect("/wiki/#{wiki.id}")
@@ -53,8 +59,8 @@ put '/wiki/:id' do
 end
 
 # Delete
-delete '/wiki/:id' do
-  wiki = Wiki.find(params[:id])
+delete '/wiki/:id' do |id|
+  wiki = Wiki.find(id)
   wiki.destroy
   redirect('/wiki/all')
 end
