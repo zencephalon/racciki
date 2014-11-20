@@ -3,7 +3,8 @@ class CreateRevisions < ActiveRecord::Migration
     create_table :revisions do |t|
       t.references :wiki
       t.text :content
-      t.string :revision_id
+      t.integer :revision_id
+      t.references :user
 
       t.timestamps
     end
