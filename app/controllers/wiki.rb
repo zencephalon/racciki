@@ -19,7 +19,7 @@ post '/wiki' do
   if wiki.save
     #Contribution.create(user: current_user, wiki: wiki)
     #wiki.contributions.create(user: current_user)
-    wiki.create_revision(params[:revision][:content])
+    wiki.create_revision(params[:revision][:content], current_user)
     redirect("/wiki/#{wiki.id}")
   else
     session[:error] = wiki.errors.messages 
@@ -37,14 +37,14 @@ end
 # Update
 get '/wiki/:id/edit' do
   @wiki = Wiki.find(params[:id])
+  @revision = @wiki.current_revision
   erb :'wiki/update_form'
 end
 
 put '/wiki/:id' do
   wiki = Wiki.find(params[:id])
   if wiki.update(params[:wiki])
-    # wiki.contributions.create(user: current_user)
-    wiki.contributers << current_user
+    wiki.create_revision(params[:revision][:content], current_user)
     redirect("/wiki/#{wiki.id}")
   else
     session[:error] = wiki.errors.messages 
