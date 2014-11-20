@@ -1,10 +1,8 @@
 <h1><%= @wiki.title %></h1>
 
 <div class="wiki_content">
-  <%= @wiki.content %>
+  <%= @revision.content %>
 </div>
-
-<%= erb :'wiki/contribution_list', locals: {contributions: @wiki.contributions} %>
 
 <div class="wiki_buttons">
   <!-- add an edit button -->

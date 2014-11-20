@@ -30,6 +30,7 @@ end
 # Read
 get '/wiki/:id' do
   @wiki = Wiki.find(params[:id])
+  @revision = @wiki.current_revision
   erb :'wiki/show'
 end
 
