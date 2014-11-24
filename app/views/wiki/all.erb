@@ -1,5 +1,5 @@
 <ol>
 <% @wikis.each do |wiki| %>
-  <li><a href="/wiki/<%= wiki.id %>"><%= wiki.title %></a></li>
+  <%= erb :'/wiki/single_list', locals: {wiki: wiki} %>
 <% end %>
 </ol>

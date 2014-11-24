@@ -1,0 +1,7 @@
+<li>
+  <a href="/wiki/<%= wiki.id %>"><%= wiki.title %></a>
+  <form action="/wiki/<%= wiki.id %>" class="delete_form" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+  </form>
+</li>
